@@ -4,6 +4,7 @@ import Header from '@/app/header';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { json } from 'stream/consumers';
+import GameListSection from './gameListSection';
 
 export default function Home() {
   const [apiData, setApiData] = useState(null);
@@ -28,12 +29,7 @@ export default function Home() {
     <main className='flex min-h-screen flex-col items-center justify-between p-24 bg-slate-900 text-white'>
       <div className=' w-3/4 flex flex-col'>
         <Header />
-        <div className=' text-5xl'>
-          Name: {apiData ? apiData.name : 'no data'}{' '}
-        </div>
-        <div className=' text-5xl'>
-          Description: {apiData ? apiData.description : 'no data'}
-        </div>
+        <GameListSection />
         <div>{JSON.stringify(apiData)}</div>
       </div>
     </main>
