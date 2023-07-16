@@ -2,24 +2,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-function CardContent({ gameDetails }: { gameDetails: object }) {
-  return (
-    <div className='flex flex-col bg-slate-700 '>
-      <Link href={'/games-name'}>
-        <Image
-          src={gameDetails.background_image}
-          width={480}
-          height={270}
-          alt={gameDetails.name}
-        />
-      </Link>
-      <div className=' text-slate-200 text-xl font-medium m-auto'>
-        {gameDetails.name}
-      </div>
-    </div>
-  );
-}
+import CardContent from './cardContend';
 
 export default function GameCard() {
   const [apiData, setApiData] = useState(null);
@@ -41,7 +24,7 @@ export default function GameCard() {
     getData();
   }, []);
   return (
-    <div className=' rounded-lg border border-slate-300'>
+    <div className=' rounded-lg'>
       {apiData ? <CardContent gameDetails={apiData} /> : 'Loading'}
     </div>
   );

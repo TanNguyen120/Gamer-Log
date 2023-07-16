@@ -1,10 +1,10 @@
 'use client';
 
-import Header from '@/app/header';
+import GameListSection from '@/component/gameListSection';
+import Header from '@/component/header';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { json } from 'stream/consumers';
-import GameListSection from './gameListSection';
 
 export default function Home() {
   const [apiData, setApiData] = useState(null);
