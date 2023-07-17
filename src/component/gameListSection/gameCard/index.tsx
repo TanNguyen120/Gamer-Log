@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import CardContent from './cardContend';
 
-export default function GameCard() {
+export default function GameCard({ gameName }: { gameName: string }) {
   const [apiData, setApiData] = useState(null);
   useEffect(() => {
     const getData = async () => {
@@ -14,7 +14,7 @@ export default function GameCard() {
         //   Authorization: process.env.API_KEY,
         // };
         const resData = await axios.get(
-          `https://api.rawg.io/api/games/total-war-warhammer-ii?key=c89a0b30250d4a53984fe0dbcf32ce22`
+          `https://api.rawg.io/api/games/${gameName}?key=c89a0b30250d4a53984fe0dbcf32ce22`
         );
         setApiData(resData.data);
       } catch (error) {
@@ -22,7 +22,7 @@ export default function GameCard() {
       }
     };
     getData();
-  }, []);
+  }, [gameName]);
   return (
     <div className=' rounded-lg'>
       {apiData ? <CardContent gameDetails={apiData} /> : 'Loading'}
