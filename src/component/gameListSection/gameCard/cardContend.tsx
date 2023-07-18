@@ -2,6 +2,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import IconPlatform from './platformIcon';
 
 export default function CardContent({ gameDetails }: { gameDetails: any }) {
   return (
@@ -19,8 +20,8 @@ export default function CardContent({ gameDetails }: { gameDetails: any }) {
       <div className=' grid grid-cols-2 p-2'>
         <div className=' flex flex-row text-sm gap-2 items-center p-2 text-slate-300'>
           {gameDetails.platforms.map((e: any, i: number) => (
-            <div className=' ' key={i}>
-              {e.platform.name}
+            <div className='' key={i}>
+              <IconPlatform platformName={e.platform.name} />
             </div>
           ))}
         </div>
@@ -49,6 +50,7 @@ export default function CardContent({ gameDetails }: { gameDetails: any }) {
           </Link>
         ))}
       </div>
+      {/* -------------------------------------------------------------------------------------------------------------------------- */}
     </div>
   );
 }
