@@ -1,0 +1,32 @@
+{
+  "game-list": [
+    {
+      "name": "total-war-warhammer-ii",
+      "myRating": "highly addictive"
+    },
+    {
+      "name": "total-war-warhammer",
+      "myRating": "very addictive"
+    },
+    {
+      "name": "factorio",
+      "myRating": "highly addictive"
+    },
+    {
+      "name": "rimworld",
+      "myRating": "addictive"
+    },
+    {
+      "name": "civilization-vi",
+      "myRating": "entertain"
+    },
+    {
+      "name": "prototype",
+      "myRating": "entertain"
+    },
+    {
+      "name": "rome-total-war",
+      "myRating": "highly addictive"
+    }
+  ]
+}
