@@ -17,7 +17,7 @@ export default function GameListSection() {
       </div>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
         {gameList['game-list'].map((e: any, i: number) => (
-          <GameCard key={i} gameName={e.name} />
+          <GameCard key={i} gameName={e.name} myRating={e.myRating} />
         ))}
       </div>
     </div>

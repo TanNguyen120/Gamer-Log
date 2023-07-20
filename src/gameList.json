@@ -9,16 +9,24 @@
       "myRating": "very addictive"
     },
     {
+      "name": "dark-souls-iii",
+      "myRating": "highly challenging"
+    },
+    {
       "name": "factorio",
       "myRating": "highly addictive"
     },
     {
       "name": "dark-souls",
-      "myRating": "highly addictive"
+      "myRating": "very challenging"
     },
     {
       "name": "rimworld",
       "myRating": "addictive"
+    },
+    {
+      "name": "grand-theft-auto-v",
+      "myRating": "highly addictive"
     },
     {
       "name": "civilization-vi",

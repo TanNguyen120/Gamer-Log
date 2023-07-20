@@ -4,7 +4,13 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import CardContent from './cardContend';
 
-export default function GameCard({ gameName }: { gameName: string }) {
+export default function GameCard({
+  gameName,
+  myRating,
+}: {
+  gameName: string;
+  myRating: string;
+}) {
   const [apiData, setApiData] = useState(null);
   useEffect(() => {
     const getData = async () => {
@@ -25,7 +31,11 @@ export default function GameCard({ gameName }: { gameName: string }) {
   }, [gameName]);
   return (
     <div className=' rounded-lg'>
-      {apiData ? <CardContent gameDetails={apiData} /> : 'Loading'}
+      {apiData ? (
+        <CardContent gameDetails={apiData} myRating={myRating} />
+      ) : (
+        'Loading'
+      )}
     </div>
   );
 }
