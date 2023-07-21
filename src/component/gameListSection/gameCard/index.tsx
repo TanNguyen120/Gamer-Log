@@ -7,9 +7,11 @@ import CardContent from './cardContend';
 export default function GameCard({
   gameName,
   myRating,
+  gameDetails,
 }: {
   gameName: string;
   myRating: string;
+  gameDetails: any;
 }) {
   const [apiData, setApiData] = useState(null);
   useEffect(() => {
@@ -31,11 +33,12 @@ export default function GameCard({
   }, [gameName]);
   return (
     <div className=' rounded-lg'>
-      {apiData ? (
+      {/* {apiData ? (
         <CardContent gameDetails={apiData} myRating={myRating} />
       ) : (
         'Loading'
-      )}
+      )} */}
+      <CardContent gameDetails={gameDetails} myRating={myRating} />
     </div>
   );
 }
