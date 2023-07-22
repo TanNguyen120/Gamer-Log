@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import CardContent from './cardContend';
+import LoadingDiv from './loadingDiv';
 
 export default function GameCard({
   gameName,
@@ -33,12 +34,11 @@ export default function GameCard({
   }, [gameName]);
   return (
     <div className=' rounded-lg'>
-      {/* {apiData ? (
+      {apiData ? (
         <CardContent gameDetails={apiData} myRating={myRating} />
       ) : (
-        'Loading'
-      )} */}
-      <CardContent gameDetails={gameDetails} myRating={myRating} />
+        <LoadingDiv />
+      )}
     </div>
   );
 }
