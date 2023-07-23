@@ -13,7 +13,7 @@ export default function CardContent({
 }) {
   return (
     <div className='flex flex-col bg-neutral-800 hover:bg-neutral-700  rounded-lg border border-slate-600 h-full group'>
-      <Link href={'/games-name'}>
+      <Link href={`/game/${gameDetails.slug}`}>
         <Image
           src={gameDetails.background_image}
           width={480}

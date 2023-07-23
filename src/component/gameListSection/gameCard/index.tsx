@@ -8,7 +8,6 @@ import LoadingDiv from './loadingDiv';
 export default function GameCard({
   gameName,
   myRating,
-  gameDetails,
 }: {
   gameName: string;
   myRating: string;
