@@ -23,7 +23,7 @@ export default function GameDetailsPage() {
     getData();
   }, [router.query.gameName]);
   return (
-    <div className='flex min-h-screen flex-col items-center justify-between p-24 bg-neutral-900 text-white'>
+    <div className=' bg-slate-700'>
       <div className=' w-3/4 flex flex-col'>{JSON.stringify(apiData)}</div>
     </div>
   );
