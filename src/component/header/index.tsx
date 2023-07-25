@@ -3,7 +3,7 @@ import SearchComponent from './searchBar';
 
 export default function Header() {
   return (
-    <div className='flex flex-row items-center p-4 border-b border-slate-600 '>
+    <div className='flex flex-row items-center p-4 border-b border-slate-600 bg-stone-900'>
       <div className=' text-3xl font-semibold text-white font-mono'>
         T-BackLog
       </div>
