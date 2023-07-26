@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -19,9 +20,29 @@ export default async function Page({
   params: { gameName: string };
 }) {
   const apiData = await getData(params.gameName);
+
+  {
+    /* <div
+    style={{ backgroundImage: `url(${apiData.background_image})` }}
+    className=' bg-cover bg-opacity-80 container flex flex-col'
+  >
+    {JSON.stringify(apiData)}
+  </div> */
+  }
   return (
-    <main className=' bg-slate-700 text-white'>
-      <div className=' w-3/4 flex flex-col'>{JSON.stringify(apiData)}</div>
-    </main>
+    <div
+      style={{
+        backgroundImage: `url(${apiData.background_image})`,
+        backgroundPosition: 'top',
+        backgroundRepeat: 'no-repeat',
+        height: '1080px',
+        backgroundSize: 'cover',
+      }}
+      className=''
+    >
+      <div className=' bg-slate-950 bg-opacity-90 grid grid-cols-1 text-white'>
+        <div className=' w-48'>{JSON.stringify(apiData)}</div>
+      </div>
+    </div>
   );
 }
