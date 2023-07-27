@@ -17,6 +17,10 @@
       "myRating": "highly addictive"
     },
     {
+      "name": "noita",
+      "myRating": "highly addictive"
+    },
+    {
       "name": "dark-souls",
       "myRating": "very challenging"
     },
@@ -55,6 +59,10 @@
     {
       "name": "hearthstone",
       "myRating": "gamble addictive"
+    },
+    {
+      "name": "dead-cell",
+      "myRating": "100% complete"
     }
   ]
 }

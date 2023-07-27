@@ -40,8 +40,14 @@ export default async function Page({
       }}
       className=''
     >
-      <div className=' bg-slate-950 bg-opacity-90 grid grid-cols-1 text-white'>
-        <div className=' w-48'>{JSON.stringify(apiData)}</div>
+      <div className=' bg-neutral-950 bg-opacity-70 grid grid-cols-1 text-white justify-center gap-4  w-2/3 '>
+        <div className=' text-center text-4xl font-bold mt-96'>
+          {apiData.name}
+        </div>
+        <div
+          className=' text-slate-300'
+          dangerouslySetInnerHTML={{ __html: apiData.description }}
+        ></div>
       </div>
     </div>
   );
