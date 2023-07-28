@@ -38,16 +38,26 @@ export default async function Page({
         height: '1080px',
         backgroundSize: 'cover',
       }}
-      className=''
+      className=' grid grid-cols-1'
     >
-      <div className=' bg-neutral-950 bg-opacity-70 grid grid-cols-1 text-white justify-center gap-4  w-2/3 '>
-        <div className=' text-center text-4xl font-bold mt-96'>
-          {apiData.name}
+      <div className='bg-neutral-950 bg-opacity-80'>
+        <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
+          <div className='text-left flex flex-col'>
+            <div className='text-5xl font-bold mt-96'>{apiData.name}</div>
+            <div className=' flex flex-row mt-2 text-slate-400'>
+              <div>
+                release on {apiData.released}, by {apiData.publishers[0].name}{' '}
+              </div>
+            </div>
+          </div>
+          <div className=' flex flex-col'>
+            <div className=' text-2xl font-semibold'>About</div>
+            <div
+              className=' text-slate-300  mx-auto'
+              dangerouslySetInnerHTML={{ __html: apiData.description }}
+            ></div>
+          </div>
         </div>
-        <div
-          className=' text-slate-300'
-          dangerouslySetInnerHTML={{ __html: apiData.description }}
-        ></div>
       </div>
     </div>
   );
