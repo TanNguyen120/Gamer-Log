@@ -1,7 +1,6 @@
+import RatingArea from '@/component/ratingArea';
 import axios from 'axios';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { AiFillStar } from 'react-icons/ai';
 
 async function getData(gameName: string) {
   try {
@@ -48,6 +47,16 @@ export default async function Page({
               <div>
                 release on {apiData.released}, by {apiData.publishers[0].name}{' '}
               </div>
+            </div>
+          </div>
+          <div className=' flex flex-col'>
+            <div className=' text-2xl font-semibold'>
+              Rating: {apiData.rating}
+            </div>
+            <div>
+              {apiData.ratings.map((e: any, i: number) => (
+                <RatingArea id={e.id} title={e.title} key={i} count={e.count} />
+              ))}
             </div>
           </div>
           <div className=' flex flex-col'>
