@@ -1,4 +1,5 @@
 import RatingArea from '@/component/ratingArea';
+import RequirementSection from '@/component/requirementSection';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 
@@ -36,10 +37,11 @@ export default async function Page({
         backgroundRepeat: 'no-repeat',
         height: '1080px',
         backgroundSize: 'cover',
+        backgroundColor: 'black',
       }}
       className=' grid grid-cols-1'
     >
-      <div className='bg-neutral-950 bg-opacity-80'>
+      <div className='bg-black bg-opacity-80'>
         <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
           <div className='text-left flex flex-col'>
             <div className='text-5xl font-bold mt-96'>{apiData.name}</div>
@@ -62,9 +64,21 @@ export default async function Page({
           <div className=' flex flex-col'>
             <div className=' text-2xl font-semibold'>About</div>
             <div
-              className=' text-slate-300  mx-auto'
+              className=' text-slate-300  mx-auto indent-8 my-8'
               dangerouslySetInnerHTML={{ __html: apiData.description }}
             ></div>
+          </div>
+          <div className=' flex flex-col'>
+            <div className=' text-2xl font-semibold'>Requirement</div>
+            <div className=' flex flex-col'>
+              {apiData.platforms.map((e: any, i: number) => (
+                <RequirementSection
+                  key={i}
+                  requirement={e.requirements}
+                  platformName={e.platform.name}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
