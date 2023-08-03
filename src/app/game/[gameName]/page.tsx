@@ -70,7 +70,7 @@ export default async function Page({
           </div>
           <div className=' flex flex-col'>
             <div className=' text-2xl font-semibold'>Requirement</div>
-            <div className=' flex flex-col'>
+            <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
               {apiData.platforms.map((e: any, i: number) => (
                 <RequirementSection
                   key={i}

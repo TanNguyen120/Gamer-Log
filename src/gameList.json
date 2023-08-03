@@ -61,8 +61,12 @@
       "myRating": "gamble addictive"
     },
     {
-      "name": "dead-cell",
+      "name": "dead-cells",
       "myRating": "100% complete"
+    },
+    {
+      "name": "terraria",
+      "myRating": "very addictive"
     }
   ]
 }
