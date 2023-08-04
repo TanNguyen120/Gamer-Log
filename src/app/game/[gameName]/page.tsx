@@ -1,5 +1,6 @@
 import RatingArea from '@/component/ratingArea';
 import RequirementSection from '@/component/requirementSection';
+import TileHeader from '@/component/tile';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 
@@ -62,14 +63,14 @@ export default async function Page({
             </div>
           </div>
           <div className=' flex flex-col'>
-            <div className=' text-2xl font-semibold'>About</div>
+            <TileHeader tile='About' />
             <div
               className=' text-slate-300  mx-auto indent-8 my-8'
               dangerouslySetInnerHTML={{ __html: apiData.description }}
             ></div>
           </div>
           <div className=' flex flex-col'>
-            <div className=' text-2xl font-semibold'>Requirement</div>
+            <TileHeader tile='Requirements' />
             <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
               {apiData.platforms.map((e: any, i: number) => (
                 <RequirementSection

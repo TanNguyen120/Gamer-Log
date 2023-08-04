@@ -54,7 +54,7 @@
     },
     {
       "name": "grand-theft-auto-vice-city",
-      "myRating": "addictive"
+      "myRating": "100% complete"
     },
     {
       "name": "hearthstone",
@@ -66,6 +66,10 @@
     },
     {
       "name": "terraria",
+      "myRating": "very addictive"
+    },
+    {
+      "name": "grand-theft-auto-san-andreas",
       "myRating": "very addictive"
     }
   ]
