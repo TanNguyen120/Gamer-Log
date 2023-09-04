@@ -71,6 +71,30 @@
     {
       "name": "grand-theft-auto-san-andreas",
       "myRating": "very addictive"
+    },
+    {
+      "name": "metroid-fusion",
+      "myRating": "very Good Design"
+    },
+    {
+      "name": "the-legend-of-zelda-the-minish-cap",
+      "myRating": "Love The size transform"
+    },
+    {
+      "name": "megaman-x",
+      "myRating": "on the easy side"
+    },
+    {
+      "name": "pokemon-firered",
+      "myRating": "childhood tile"
+    },
+    {
+      "name": "pokemon-ruby",
+      "myRating": "childhood tile"
+    },
+    {
+      "name": "pokemon-omega-ruby",
+      "myRating": "soaring is the best feature in this game"
     }
   ]
 }

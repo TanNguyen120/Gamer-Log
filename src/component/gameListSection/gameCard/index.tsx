@@ -4,12 +4,14 @@ import CardContent from './cardContend';
 import LoadingDiv from './loadingDiv';
 
 export default function GameCard({
+  key,
   gameName,
   myRating,
 }: {
   gameName: string;
   myRating: string;
   gameDetails: any;
+  key: number;
 }) {
   const [apiData, setApiData] = useState(null);
   useEffect(() => {
