@@ -33,8 +33,20 @@
       "myRating": "highly addictive"
     },
     {
+      "name": "league-of-legends",
+      "myRating": "Hey I got to Diamond five in season 6"
+    },
+    {
       "name": "civilization-vi",
       "myRating": "entertain"
+    },
+    {
+      "name": "warhammer-40000-dawn-of-war-dark-crusade",
+      "myRating": "Good RTS and W40K atmos"
+    },
+    {
+      "name": "warhammer-40000-dawn-of-war",
+      "myRating": "Good RTS but lack variety"
     },
     {
       "name": "prototype",
