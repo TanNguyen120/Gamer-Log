@@ -62,7 +62,7 @@ export default function CardContent({
       {/* Below Components will show when hover parent component */}
       <div className=' hidden group-hover:flex flex-col py-2 px-5 divide-y text-slate-400 text-sm gap-4 divide-y-1'>
         <div className=' grid grid-cols-2'>
-          <div>My Rating : </div>
+          <div>My Comment : </div>
           <div className=' text-right capitalize'>{myRating}</div>
         </div>
         <div className=' grid grid-cols-2 py-2'>

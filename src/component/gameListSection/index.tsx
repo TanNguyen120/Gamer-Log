@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import GameCard from './gameCard';
 import gameList from '@/gameList.json';
@@ -17,7 +18,12 @@ export default function GameListSection() {
       </div>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
         {gameList['game-list'].map((e: any, i: number) => (
-          <GameCard key={i} gameName={e.name} myRating={e.myRating} />
+          <GameCard
+            key={i}
+            gameName={e.name}
+            myComment={e.myComment}
+            gameDetails={undefined}
+          />
         ))}
       </div>
     </div>

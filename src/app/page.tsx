@@ -1,5 +1,3 @@
-'use client';
-
 import GameListSection from '@/component/gameListSection';
 
 export default function Home() {
