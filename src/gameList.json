@@ -1,116 +1,120 @@
 {
   "game-list": [
     {
-      "name": "total-war-warhammer-ii",
-      "myRating": "highly addictive"
-    },
-    {
-      "name": "total-war-warhammer",
-      "myRating": "very addictive"
-    },
-    {
       "name": "dark-souls-iii",
-      "myRating": "highly challenging"
+      "myComment": "highly challenging"
+    },
+    {
+      "name": "nierautomata",
+      "myComment": "...a neverending cycle of life and death."
     },
     {
       "name": "factorio",
-      "myRating": "highly addictive"
+      "myComment": "highly addictive"
+    },
+    {
+      "name": "total-war-warhammer-ii",
+      "myComment": "highly addictive"
+    },
+    {
+      "name": "total-war-warhammer",
+      "myComment": "very addictive"
     },
     {
       "name": "noita",
-      "myRating": "highly addictive"
+      "myComment": "highly addictive"
     },
     {
       "name": "dark-souls",
-      "myRating": "very challenging"
+      "myComment": "very challenging"
     },
     {
       "name": "rimworld",
-      "myRating": "addictive"
+      "myComment": "addictive"
     },
     {
       "name": "grand-theft-auto-v",
-      "myRating": "highly addictive"
+      "myComment": "highly addictive"
     },
     {
       "name": "league-of-legends",
-      "myRating": "Hey I got to Diamond five in season 6"
+      "myComment": "Hey I got to Diamond five in season 6"
     },
     {
       "name": "civilization-vi",
-      "myRating": "entertain"
+      "myComment": "entertain"
     },
     {
       "name": "warhammer-40000-dawn-of-war-dark-crusade",
-      "myRating": "Good RTS and W40K atmos"
+      "myComment": "Good RTS and W40K atmos"
     },
     {
       "name": "warhammer-40000-dawn-of-war",
-      "myRating": "Good RTS but lack variety"
+      "myComment": "Good RTS but lack variety"
     },
     {
       "name": "prototype",
-      "myRating": "entertain"
+      "myComment": "entertain"
     },
     {
       "name": "rome-total-war",
-      "myRating": "highly addictive"
+      "myComment": "highly addictive"
     },
     {
       "name": "assassins-creed-iv-black-flag",
-      "myRating": "entertain"
+      "myComment": "entertain"
     },
     {
       "name": "assassins-creed-ii",
-      "myRating": "entertain"
+      "myComment": "entertain"
     },
     {
       "name": "grand-theft-auto-vice-city",
-      "myRating": "100% complete"
+      "myComment": "100% complete"
     },
     {
       "name": "hearthstone",
-      "myRating": "gamble addictive"
+      "myComment": "gamble addictive"
     },
     {
       "name": "dead-cells",
-      "myRating": "100% complete"
+      "myComment": "100% complete"
     },
     {
       "name": "terraria",
-      "myRating": "very addictive"
+      "myComment": "very addictive"
     },
     {
       "name": "grand-theft-auto-san-andreas",
-      "myRating": "very addictive"
+      "myComment": "very addictive"
     },
     {
       "name": "metroid-fusion",
-      "myRating": "very Good Design"
+      "myComment": "very Good Design"
     },
     {
       "name": "warcraft-3-the-frozen-throne",
-      "myRating": "Just Play Custom Map"
+      "myComment": "Just Play Custom Map"
     },
     {
       "name": "the-legend-of-zelda-the-minish-cap",
-      "myRating": "Love The size transform"
+      "myComment": "Love The size transform"
     },
     {
       "name": "megaman-x",
-      "myRating": "on the easy side"
+      "myComment": "on the easy side"
     },
     {
       "name": "pokemon-firered",
-      "myRating": "childhood tile"
+      "myComment": "childhood tile"
     },
     {
       "name": "pokemon-ruby",
-      "myRating": "childhood tile"
+      "myComment": "childhood tile"
     },
     {
       "name": "pokemon-omega-ruby",
-      "myRating": "soaring is the best feature in this game"
+      "myComment": "soaring is the best feature in this game"
     }
   ]
 }

@@ -13,7 +13,7 @@ export default function GameResultCard({
   return (
     <div className=' rounded-lg bg-neutral-900 w-fit grid grid-cols-1 m-3'>
       <Image
-        src={bgImg}
+        src={bgImg ? bgImg : '/deadLink.png'}
         width={640}
         height={480}
         alt='game image'
