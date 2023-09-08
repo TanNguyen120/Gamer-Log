@@ -1,12 +1,14 @@
 import axios from 'axios';
-import GameListDetails from './gameListResult';
-import PageSelection from './PageSection';
+import GameListDetails from '../search/gameListResult';
+import PageSelection from '../search/PageSection';
 
-async function getData(gameName: any) {
+async function getData(slug: string, page: string) {
   try {
-    console.log('Find List Of ' + gameName + ' games');
+    console.log(
+      `link is: https://api.rawg.io/api/games?search=${slug}&page=${page}&key=c89a0b30250d4a53984fe0dbcf32ce22`
+    );
     const resData = await axios.get(
-      `https://api.rawg.io/api/games?search=${gameName}&key=c89a0b30250d4a53984fe0dbcf32ce22`
+      `https://api.rawg.io/api/games?search=${slug}&page=${page}&key=c89a0b30250d4a53984fe0dbcf32ce22`
     );
 
     return resData.data;
@@ -20,10 +22,11 @@ async function getData(gameName: any) {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string };
 }) {
-  const gameName = searchParams['word'] ?? '1'; // default value is "1"
-  const apiData = await getData(gameName);
+  const slug = searchParams['slug'] ?? ''; // default value is "1";
+  const page = searchParams['page'] ?? '1'; // default value is "1";
+  const apiData = await getData(slug, page);
   return (
     <div className='bg-black min-h-screen'>
       <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
@@ -35,7 +38,7 @@ export default async function Page({
         <PageSelection
           nextPage={apiData.next}
           prePage={apiData.previous}
-          slug={gameName}
+          slug={slug}
         />
       </div>
     </div>
