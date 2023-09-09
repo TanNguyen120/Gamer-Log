@@ -12,7 +12,7 @@ export default function GameResultCard({
   slug: string;
 }) {
   return (
-    <div className=' rounded-lg bg-neutral-900 w-fit grid grid-cols-1 m-3'>
+    <div className=' rounded-lg bg-neutral-900 w-fit grid grid-cols-1 m-3 h-fit'>
       <Link href={`/game/${slug}`}>
         <Image
           src={bgImg ? bgImg : '/deadLink.png'}

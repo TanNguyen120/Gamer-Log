@@ -14,7 +14,10 @@ export default function PageSelection({
   console.log('next page is: ' + nextPageNum);
   //---------------------------------------------------------------------------------------------------
   const prevPageParams = new URLSearchParams(prePage); // Get all params in the link the api provide
-  const prevPageNum = prevPageParams.get('page'); // get the page number
+  const prevPageNum = prevPageParams.get('page')
+    ? prevPageParams.get('page')
+    : 1; // get the page number
+
   console.log('prev page is: ' + prevPageNum);
   //---------------------------------------------------------------------------------------------------
   return (
