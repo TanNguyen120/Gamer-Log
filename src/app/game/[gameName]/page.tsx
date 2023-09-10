@@ -3,7 +3,7 @@ import RatingArea from '@/component/ratingArea';
 import RequirementSection from '@/component/requirementSection';
 import TileHeader from '@/component/tile';
 import axios from 'axios';
-import { AiFillStar } from 'react-icons/ai';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 async function getData(gameName: string) {
   try {
@@ -23,6 +23,30 @@ async function getData(gameName: string) {
     alert(JSON.stringify(error));
   }
 }
+//-------------------------------------------------------------------------------------------------------------------------------------
+// All of this Just to get a dynamic web-tile
+
+type Props = {
+  params: { gameName: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const gameName = params.gameName;
+
+  // fetch data
+  const gameObject = await getData(gameName);
+
+  return {
+    title: gameObject?.gameDetails.gameName,
+    description: 'Game Details',
+  };
+}
+//-------------------------------------------------------------------------------------------------------------
 
 export default async function Page({
   params,
@@ -107,6 +131,18 @@ export default async function Page({
           <ScreenShotSection screenShots={apiData?.screenShot} />
           <div className=' flex flex-col'>
             <TileHeader tile='Requirements' />
+            <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
+              {gameDetails.platforms.map((e: any, i: number) => (
+                <RequirementSection
+                  key={i}
+                  requirement={e.requirements}
+                  platformName={e.platform.name}
+                />
+              ))}
+            </div>
+          </div>
+          <div className=' flex flex-col'>
+            <TileHeader tile='Social Media' />
             <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
               {gameDetails.platforms.map((e: any, i: number) => (
                 <RequirementSection
