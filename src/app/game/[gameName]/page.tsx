@@ -1,6 +1,7 @@
 import ScreenShotSection from '@/component/gamePicSection';
 import RatingArea from '@/component/ratingArea';
 import RequirementSection from '@/component/requirementSection';
+import SocialMediaSection from '@/component/socialMediaSection';
 import TileHeader from '@/component/tile';
 import axios from 'axios';
 import type { Metadata, ResolvingMetadata } from 'next';
@@ -128,22 +129,11 @@ export default async function Page({
               </div>
             </div>
           </div>
+          <SocialMediaSection socialObject={gameDetails} />
           <ScreenShotSection screenShots={apiData?.screenShot} />
           <div className=' flex flex-col'>
             <TileHeader tile='Requirements' />
-            <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
-              {gameDetails.platforms.map((e: any, i: number) => (
-                <RequirementSection
-                  key={i}
-                  requirement={e.requirements}
-                  platformName={e.platform.name}
-                />
-              ))}
-            </div>
-          </div>
-          <div className=' flex flex-col'>
-            <TileHeader tile='Social Media' />
-            <div className=' flex flex-col divide-y divide-slate-600 bg-black bg-opacity-10'>
+            <div className=' flex flex-col divide-y divide-slate-600 '>
               {gameDetails.platforms.map((e: any, i: number) => (
                 <RequirementSection
                   key={i}

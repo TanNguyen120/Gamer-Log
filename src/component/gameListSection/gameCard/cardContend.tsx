@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import IconPlatform from './platformIcon';
 
 export default function CardContent({
@@ -14,13 +14,15 @@ export default function CardContent({
   return (
     <div className='flex flex-col bg-neutral-800 hover:bg-neutral-700  rounded-lg border border-slate-600 h-full group'>
       <Link href={`/game/${gameDetails.slug}`}>
-        <Image
-          src={gameDetails.background_image}
-          width={480}
-          height={270}
-          alt={gameDetails.name}
-          className=' rounded-t-lg  h-[16rem]'
-        />
+        <Suspense fallback={<p>Loading Image...</p>}>
+          <Image
+            src={gameDetails.background_image}
+            width={480}
+            height={270}
+            alt={gameDetails.name}
+            className=' rounded-t-lg  h-[16rem]'
+          />
+        </Suspense>
       </Link>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
       <div className=' grid grid-cols-2 p-2'>

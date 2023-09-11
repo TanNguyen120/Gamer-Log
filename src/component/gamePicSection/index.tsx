@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import TileHeader from '../tile';
+import { Suspense } from 'react';
 
 export default function ScreenShotSection({
   screenShots,
@@ -11,13 +12,15 @@ export default function ScreenShotSection({
       <TileHeader tile='Screen Shot' />
       {screenShots.map((e: any, i: number) => (
         <div key={i}>
-          <Image
-            src={e.image}
-            width={1280}
-            height={720}
-            alt={'id'}
-            className=' rounded-t-lg '
-          />
+          <Suspense fallback={<p>Loading image...</p>}>
+            <Image
+              src={e.image}
+              width={1280}
+              height={720}
+              alt={'id'}
+              className=' rounded-t-lg '
+            />
+          </Suspense>
         </div>
       ))}
     </div>
