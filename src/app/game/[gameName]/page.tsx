@@ -69,15 +69,15 @@ export default async function Page({
     <div
       style={{
         backgroundImage: `url(${gameDetails.background_image})`,
-        backgroundPosition: 'top',
-        backgroundRepeat: 'no-repeat',
-        height: '1080px',
-        backgroundSize: 'cover',
-        backgroundColor: 'black',
+        // backgroundPosition: 'top',
+        // backgroundRepeat: 'no-repeat',
+        // height: '1080px',
+        // backgroundSize: 'cover',
+        // backgroundColor: 'black',
       }}
-      className=' grid grid-cols-1'
+      className=' bg-top bg-fixed bg-contain bg-neutral-900'
     >
-      <div className='bg-black bg-opacity-80'>
+      <div className='bg-black bg-opacity-80 min-h-screen'>
         <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
           <div className='text-left flex flex-col'>
             <div className='text-5xl font-bold mt-96'>{gameDetails.name}</div>
@@ -90,16 +90,7 @@ export default async function Page({
               </div>
             </div>
           </div>
-          <div className=' flex flex-col'>
-            <div className=' text-2xl font-semibold'>
-              Rating: {gameDetails.rating}
-            </div>
-            <div>
-              {gameDetails.ratings.map((e: any, i: number) => (
-                <RatingArea id={e.id} title={e.title} key={i} count={e.count} />
-              ))}
-            </div>
-          </div>
+          <RatingArea gameDetails={gameDetails} />
           <div className=' flex flex-col'>
             <TileHeader tile='About' />
             <div
