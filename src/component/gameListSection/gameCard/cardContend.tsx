@@ -48,9 +48,12 @@ export default function CardContent({
       </div>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
 
-      <div className=' text-slate-200 text-2xl font-semibold ml-2 pt-2 px-2'>
+      <Link
+        href={`/game/${gameDetails.slug}`}
+        className=' text-slate-200 text-2xl font-semibold ml-2 pt-2 px-2'
+      >
         {gameDetails.name}
-      </div>
+      </Link>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
 
       <div className=' flex flex-row text-sm ml-2 pl-2 text-slate-400'>
@@ -65,7 +68,9 @@ export default function CardContent({
       <div className=' hidden group-hover:flex flex-col py-2 px-5 divide-y text-slate-400 text-sm gap-4 divide-y-1'>
         <div className=' grid grid-cols-2'>
           <div>My Comment : </div>
-          <div className=' text-right capitalize'>{myRating}</div>
+          <div className=' text-right capitalize p-3 rounded-lg m-1 bg-slate-300 text-slate-700'>
+            {myRating}
+          </div>
         </div>
         <div className=' grid grid-cols-2 py-2'>
           <div>Release Date : </div>

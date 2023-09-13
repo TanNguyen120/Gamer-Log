@@ -1,6 +1,10 @@
 {
   "game-list": [
     {
+      "name": "pokemon-firered",
+      "myComment": "Funnily my first ever pc game is an emulate game from gba"
+    },
+    {
       "name": "dark-souls-iii",
       "myComment": "highly challenging"
     },
@@ -121,12 +125,16 @@
       "myComment": "on the easy side"
     },
     {
-      "name": "pokemon-firered",
-      "myComment": "childhood tile"
+      "name": "pokemon-heartgold-version",
+      "myComment": "Love the pokemon follower feature"
     },
     {
       "name": "pokemon-ruby",
       "myComment": "childhood tile"
+    },
+    {
+      "name": "pokemon-platinum",
+      "myComment": "I complete all event in this game"
     },
     {
       "name": "pokemon-omega-ruby",

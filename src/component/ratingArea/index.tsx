@@ -32,7 +32,7 @@ export default function RatingArea({ gameDetails }: { gameDetails: any }) {
       <div className='flex flex-row gap-2 items-baseline'>
         <div className=' text-2xl font-semibold'>Metacritic Score:</div>
         <div className=' rounded-lg border p-2 border-slate-600 w-min h-min'>
-          {gameDetails.metacritic}
+          {gameDetails.metacritic ? gameDetails.metacritic : 'none'}
         </div>
       </div>
       <div className=' grid grid-cols-1'>

@@ -8,7 +8,13 @@ export default function Header() {
       <Link href={'/'} className=' text-3xl font-semibold text-white font-mono'>
         T-BackLog
       </Link>
-      <div className=' text-slate-200 mr-3 ml-auto text-lg'>Games</div>
+      <Link
+        title='to a random set of game'
+        href={'/games'}
+        className=' text-slate-200 mr-3 ml-auto text-lg'
+      >
+        Games
+      </Link>
       <SearchComponent />
       <div className=' px-2 py-1 bg-pink-600 text-white mr-3 ml-3 font-semibold rounded-md'>
         <MdOutlineExplore className=' inline' /> Explore
