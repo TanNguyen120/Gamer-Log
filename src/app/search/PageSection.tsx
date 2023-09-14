@@ -24,7 +24,7 @@ export default function PageSelection({
     <div className=' flex flex-row gap-5 items-center justify-center mb-3'>
       {prePage ? (
         <Link
-          href={`/searchPage?page=${prevPageNum}&slug=${slug}`}
+          href={`/search-page?page=${prevPageNum}&slug=${slug}`}
           className=' rounded-lg bg-neutral-800 ring ring-slate-700 p-2'
         >
           <MdNavigateNext className='inline -rotate-180' /> Prev Page
@@ -37,7 +37,7 @@ export default function PageSelection({
 
       {nextPage ? (
         <Link
-          href={`/searchPage?page=${nextPageNum}&slug=${slug}`}
+          href={`/search-page?page=${nextPageNum}&slug=${slug}`}
           className=' rounded-lg bg-neutral-800 ring ring-slate-700 p-2'
         >
           Next Page <MdNavigateNext className='inline' />

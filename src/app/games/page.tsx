@@ -6,13 +6,13 @@ async function getData() {
   try {
     const count = (
       await axios.get(
-        `https://api.rawg.io/api/games?key=c89a0b30250d4a53984fe0dbcf32ce22`
+        `https://api.rawg.io/api/games?key=${process.env.API_KEY}`
       )
     ).data.count;
     const numberOfPage = Math.floor(count / 20);
     const randomPage = Math.floor(Math.random() * (numberOfPage - 1) + 1);
     const gameList = await axios.get(
-      `https://api.rawg.io/api/games?key=c89a0b30250d4a53984fe0dbcf32ce22&page=${randomPage}`
+      `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page=${randomPage}`
     );
 
     return gameList.data;

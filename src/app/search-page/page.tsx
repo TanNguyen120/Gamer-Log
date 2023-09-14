@@ -5,10 +5,10 @@ import PageSelection from '../search/PageSection';
 async function getData(slug: string, page: string) {
   try {
     console.log(
-      `link is: https://api.rawg.io/api/games?search=${slug}&page=${page}&key=c89a0b30250d4a53984fe0dbcf32ce22`
+      `link is: https://api.rawg.io/api/games?search=${slug}&page=${page}&key=${process.env.API_KEY}`
     );
     const resData = await axios.get(
-      `https://api.rawg.io/api/games?search=${slug}&page=${page}&key=c89a0b30250d4a53984fe0dbcf32ce22`
+      `https://api.rawg.io/api/games?search=${slug}&page=${page}&key=${process.env.API_KEY}`
     );
 
     return resData.data;

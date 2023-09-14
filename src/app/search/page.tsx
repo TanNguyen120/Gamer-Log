@@ -6,7 +6,7 @@ async function getData(gameName: any) {
   try {
     console.log('Find List Of ' + gameName + ' games');
     const resData = await axios.get(
-      `https://api.rawg.io/api/games?search=${gameName}&key=c89a0b30250d4a53984fe0dbcf32ce22`
+      `https://api.rawg.io/api/games?search=${gameName}&key=${process.env.API_KEY}`
     );
 
     return resData.data;
