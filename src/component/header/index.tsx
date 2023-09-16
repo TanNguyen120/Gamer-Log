@@ -16,9 +16,12 @@ export default function Header() {
         Games
       </Link>
       <SearchComponent />
-      <div className=' px-2 py-1 bg-pink-600 text-white mr-3 ml-3 font-semibold rounded-md'>
+      <Link
+        href={`/explore`}
+        className=' px-2 py-1 bg-pink-600 text-white mr-3 ml-3 font-semibold rounded-md'
+      >
         <MdOutlineExplore className=' inline' /> Explore
-      </div>
+      </Link>
     </div>
   );
 }
