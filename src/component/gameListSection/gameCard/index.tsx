@@ -13,7 +13,7 @@ const getData = async (gameName: string) => {
     );
     return resData.data;
   } catch (error) {
-    alert(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   }
 };
 
