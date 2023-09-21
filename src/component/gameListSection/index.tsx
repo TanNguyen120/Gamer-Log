@@ -5,9 +5,17 @@ import { GameCount } from './gameCount';
 import axios from 'axios';
 import { sql } from '@vercel/postgres';
 
+const shuffle = (array: Array<any>) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
 async function getGamesList() {
   const games = await sql`SELECT * FROM myGames;`;
-  return games.rows;
+  return shuffle(games.rows);
 }
 
 export default async function GameListSection() {
