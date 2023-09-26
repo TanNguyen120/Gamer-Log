@@ -1,4 +1,5 @@
 import axios from 'axios';
+import EditSection from './editSection';
 
 async function findGame(gameName: string) {
   try {
@@ -43,6 +44,13 @@ export default async function Page({
           <div className='text-left flex flex-col'>
             <div className='text-5xl font-bold mt-96'>{gameDetails.name}</div>
           </div>
+          <EditSection
+            slug={gameDetails.slug}
+            score={gameDetails.score}
+            genres={gameDetails.genres}
+            myComment={gameData.game.mycomment}
+            severUrl={process.env.SEVER_URL}
+          />
         </div>
       </div>
     </div>
