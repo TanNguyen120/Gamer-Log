@@ -26,7 +26,7 @@ export default function CardContent({
       </Link>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
       <div className=' grid grid-cols-2 p-2'>
-        <div className=' flex flex-row text-sm gap-2 items-center p-2 text-slate-300'>
+        <div className=' flex flex-row flex-wrap text-sm gap-2 items-center p-2 text-slate-300'>
           {gameDetails.platforms.length > 0
             ? gameDetails.platforms.map((e: any, i: number) => (
                 <div className='' key={i}>
@@ -104,6 +104,14 @@ export default function CardContent({
               ? gameDetails.esrb_rating.name
               : 'no rating'}
           </div>
+        </div>
+        <div className=' grid grid-cols-1 pt-2'>
+          <Link
+            href={`/edit-game/${gameDetails.slug}`}
+            className='py-1 px-2 rounded-lg bg-pink-500 text-white font-semibold w-fit mt-2'
+          >
+            Edit
+          </Link>
         </div>
       </div>
     </div>

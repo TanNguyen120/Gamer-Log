@@ -1,12 +1,4 @@
-'use client';
-import gameList from '@/gameList.json';
-import { useEffect, useState } from 'react';
-
-export function GameCount() {
-  const [gamePlayed, setGamePlayed] = useState(0);
-
-  useEffect(() => {
-    setGamePlayed(gameList['game-list'].length);
-  }, []);
-  return <>{gamePlayed}</>;
+export function GameCount({ gamesNumber }: { gamesNumber: number }) {
+  console.log('game played: ' + gamesNumber);
+  return <>{gamesNumber}</>;
 }
