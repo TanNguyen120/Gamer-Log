@@ -105,9 +105,14 @@ export default function CardContent({
               : 'no rating'}
           </div>
         </div>
-        <Link href={`/edit-game/${gameDetails.slug}`} className=''>
-          Edit
-        </Link>
+        <div className=' grid grid-cols-1 pt-2'>
+          <Link
+            href={`/edit-game/${gameDetails.slug}`}
+            className='py-1 px-2 rounded-lg bg-pink-500 text-white font-semibold w-fit mt-2'
+          >
+            Edit
+          </Link>
+        </div>
       </div>
     </div>
   );

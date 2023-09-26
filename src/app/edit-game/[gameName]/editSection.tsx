@@ -24,7 +24,7 @@ async function editGameData(
     const res = await axios.post(`${severUrl}api/editGame`, gameBody);
     setMes(res.data.mess);
   } catch (error: any) {
-    setMes('error: ' + error.message);
+    setMes('error: ' + error.mess);
   }
 }
 
@@ -69,8 +69,8 @@ export default function EditSection({
         onChange={(e) => setCommentText(e.target.value)}
         className=' bg-neutral-800 border border-slate-400 text-slate-400 p-3'
         spellCheck='true'
-        placeholder={myComment}
         readOnly={false}
+        defaultValue={myComment}
       ></textarea>
       <div className=' py-4'>
         <label className='block text-gray-300 text-base font-bold mb-2'>

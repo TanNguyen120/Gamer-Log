@@ -12,13 +12,16 @@ export async function POST(req: Request) {
     ) {
       throw new Error('you are not the master');
     }
-    console.log(JSON.stringify(gameData));
+
     await sql`UPDATE mygames SET myComment = ${gameData.comment}, score=${gameData.score}  WHERE name=${gameData.slug};`;
-    // for await (const e of gameData.genres) {
-    //   await sql`INSERT INTO genres (name, game) VALUES (${e.name}, ${gameData.slug}) WHERE NOT EXISTS ( SELECT * genres
-    //                                                                                                     WHERE genres.name = ${e.name}
-    //                                                                                                     AND genres.game = ${gameData.slug})`;
-    // }
+    // Because we have a constrain in database so we just add the genres and catch any error if there already that game genres in database
+    try {
+      for await (const e of gameData.genres) {
+        await sql`INSERT INTO genres (name, game) VALUES (${e.name}, ${gameData.slug})`;
+      }
+    } catch (error) {
+      console.log('Duplicate Game Genres');
+    }
     return NextResponse.json({ mess: 'success' }, { status: 200 });
   } catch (error) {
     console.error(JSON.stringify(error));

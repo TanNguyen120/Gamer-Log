@@ -46,7 +46,7 @@ export default async function Page({
           </div>
           <EditSection
             slug={gameDetails.slug}
-            score={gameDetails.score}
+            score={gameDetails.metacritic}
             genres={gameDetails.genres}
             myComment={gameData.game.mycomment}
             severUrl={process.env.SEVER_URL}
