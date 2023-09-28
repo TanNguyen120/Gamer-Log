@@ -22,9 +22,10 @@ async function editGameData(
     };
 
     const res = await axios.post(`${severUrl}api/editGame`, gameBody);
+
     setMes(res.data.mess);
   } catch (error: any) {
-    setMes('error: ' + error.mess);
+    setMes('error: ' + JSON.stringify(error));
   }
 }
 
