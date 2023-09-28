@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
   const gameData = await req.json();
-
+  console.log('request JSON: ' + JSON.stringify(gameData));
   try {
     if (
       !gameData.masterCode ||
