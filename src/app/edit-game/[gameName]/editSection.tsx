@@ -17,14 +17,43 @@ async function editGameData(
       slug: slug,
       score: score,
       comment: comment,
-      genres: genres,
+
       masterCode: masterCode,
     };
 
-    const res = await axios.post(`${severUrl}api/editGame`, gameBody);
-
-    setMes(res.data.mess);
+    console.log('edit game: ' + gameBody.slug);
+    console.log(severUrl + 'api/editGame');
+    const res = await axios
+      .post(severUrl + 'api/editGame', gameBody, {
+        headers: {
+          Authorization: 'Bearer ' + token, //the token is a variable which holds the token
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(JSON.stringify(res));
+    // fetch(`${severUrl}api/editGame`, {
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   method: 'POST',
+    //   body: JSON.stringify(gameBody),
+    // })
+    //   .then(function (res) {
+    //     console.log(res);
+    //     setMes(JSON.stringify(res));
+    //   })
+    //   .catch(function (res) {
+    //     console.log(res);
+    //     setMes(JSON.stringify(res));
+    //   });
   } catch (error: any) {
+    console.error('error:' + JSON.stringify(error));
     setMes('error: ' + JSON.stringify(error));
   }
 }
