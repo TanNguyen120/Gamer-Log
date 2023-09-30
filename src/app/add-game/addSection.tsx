@@ -9,7 +9,6 @@ async function addGameData(
   comment: string,
   genres: Array<any>,
   setMes: Function,
-  severUrl: string,
   masterCode: string
 ) {
   try {
@@ -20,8 +19,9 @@ async function addGameData(
       genres: genres,
       masterCode: masterCode,
     };
-
-    const res = await axios.post(`${severUrl}api/addGame`, gameBody);
+    const currentUrl = new URL(window.location.href);
+    const url = currentUrl.origin;
+    const res = await axios.post(`${url}/api/addGame`, gameBody);
     setMes(res.data.mess);
   } catch (error: any) {
     setMes('error: ' + error.message);
@@ -32,12 +32,10 @@ export default function AddSection({
   slug,
   score,
   genres,
-  severUrl,
 }: {
   slug: string;
   score: any;
   genres: Array<any>;
-  severUrl: any;
 }) {
   const [commentText, setCommentText] = useState('');
   const [resultMes, setResultMes] = useState('');
@@ -92,7 +90,6 @@ export default function AddSection({
             commentText,
             genres,
             setResultMes,
-            severUrl,
             masterCode
           )
         }

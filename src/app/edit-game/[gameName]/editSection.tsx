@@ -9,7 +9,6 @@ async function editGameData(
   comment: string,
   genres: Array<any>,
   setMes: Function,
-  severUrl: string,
   masterCode: string
 ) {
   try {
@@ -17,25 +16,23 @@ async function editGameData(
       slug: slug,
       score: score,
       comment: comment,
-
+      genres: genres,
       masterCode: masterCode,
     };
 
     console.log('edit game: ' + gameBody.slug);
-    console.log(severUrl + 'api/editGame');
-    const res = await axios
-      .post(severUrl + 'api/editGame', gameBody, {
-        headers: {
-          Authorization: 'Bearer ' + token, //the token is a variable which holds the token
-        },
-      })
+    const currentUrl = new URL(window.location.href);
+    const url = currentUrl.origin;
+    await axios
+      .post(url + '/api/editGame', gameBody, {})
       .then(function (response) {
         console.log(response);
+        setMes(response.data.mess);
       })
       .catch((err) => {
         console.log(err);
+        setMes(JSON.stringify(err));
       });
-    console.log(JSON.stringify(res));
     // fetch(`${severUrl}api/editGame`, {
     //   headers: {
     //     Accept: 'application/json',
@@ -126,7 +123,7 @@ export default function EditSection({
             commentText,
             genres,
             setResultMes,
-            severUrl,
+
             masterCode
           )
         }
