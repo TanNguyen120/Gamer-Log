@@ -25,7 +25,7 @@ export default async function GenresSection() {
     <div className='grid grid-cols-1 gap-2 pt-4'>
       <TileHeader tile='Genres' />
       <br></br>
-      <div className=' grid grid-cols-3 gap-5'>
+      <div className=' grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5'>
         {genresList.results.map((e: any, i: number) => (
           <GenresCard genresData={e} key={i} />
         ))}

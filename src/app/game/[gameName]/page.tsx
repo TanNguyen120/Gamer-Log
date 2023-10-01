@@ -6,6 +6,7 @@ import SocialMediaSection from '@/component/socialMediaSection';
 import TileHeader from '@/component/tile';
 import axios from 'axios';
 import type { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 async function getData(gameName: string) {
   try {
@@ -79,9 +80,11 @@ export default async function Page({
       className=' bg-top bg-contain bg-local bg-no-repeat bg-neutral-900'
     >
       <div className='bg-black bg-opacity-80 min-h-screen'>
-        <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
+        <div className=' lg:mx-auto lg:w-2/3 mx-2  grid grid-cols-1 text-white justify-center gap-4'>
           <div className='text-left flex flex-col'>
-            <div className='text-5xl font-bold mt-96'>{gameDetails.name}</div>
+            <div className='text-5xl font-bold lg:mt-96 md:mt-48 mt-24'>
+              {gameDetails.name}
+            </div>
             <div className=' flex flex-row mt-2 text-slate-400'>
               <div>
                 release on {gameDetails.released}, by{' '}
@@ -105,7 +108,9 @@ export default async function Page({
               <div className=' flex flex-col pl-4'>
                 {gameDetails.platforms.length > 0
                   ? gameDetails.platforms.map((e: any, i: number) => (
-                      <div key={i}>{e.platform.name}</div>
+                      <Link href={`/genres/${e.platform.slug}/games`} key={i}>
+                        {e.platform.name}
+                      </Link>
                     ))
                   : 'No Data'}
               </div>

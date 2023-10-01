@@ -17,8 +17,8 @@ export default function CardContent({
         <Suspense fallback={<p>Loading Image...</p>}>
           <Image
             src={gameDetails.background_image}
-            width={480}
-            height={270}
+            width={1820}
+            height={960}
             alt={gameDetails.name}
             className=' rounded-t-lg  h-[16rem]'
           />
@@ -58,7 +58,7 @@ export default function CardContent({
 
       <div className=' flex flex-row text-sm ml-2 pl-2 text-slate-400'>
         {gameDetails.genres.map((e: any, i: number) => (
-          <Link className=' m-1' key={i} href={`/genre/${e.name}`}>
+          <Link className=' m-1' key={i} href={`/genres/${e.slug}/games`}>
             {e.name}
           </Link>
         ))}

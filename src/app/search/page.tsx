@@ -26,7 +26,7 @@ export default async function Page({
   const apiData = await getData(gameName);
   return (
     <div className='bg-black min-h-screen'>
-      <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
+      <div className='lg:mx-auto lg:w-2/3 md:mx-4 mx-2  grid grid-cols-1 text-white justify-center gap-4'>
         {apiData.count > 0 ? (
           <GameListDetails listData={apiData} />
         ) : (

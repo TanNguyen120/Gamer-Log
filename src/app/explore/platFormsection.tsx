@@ -25,7 +25,7 @@ export default async function PlatformSection() {
     <div className='grid grid-cols-1 gap-2 pt-2'>
       <TileHeader tile='Platforms' />
       <br></br>
-      <div className=' grid grid-cols-3 gap-5'>
+      <div className=' grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
         {platformList.results.map((e: any, i: number) => (
           <PlatformCard platformData={e} key={i} />
         ))}
