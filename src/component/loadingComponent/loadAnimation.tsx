@@ -11,6 +11,7 @@ export default function LoadingAnimation() {
           scale: [1, 2, 2, 1, 1],
           rotate: [0, 0, 180, 180, 0],
           borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+          color: ['#c3e2d0', '#bcd2d0', '#adcfd8'],
         }}
         transition={{
           duration: 2,
@@ -27,6 +28,7 @@ export default function LoadingAnimation() {
           scale: [1, 2, 2, 1, 1],
           rotate: [0, 0, 180, 180, 0],
           borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+          color: ['#c3e2d0', '#bcd2d0', '#adcfd8'],
         }}
         transition={{
           duration: 2,
@@ -42,6 +44,7 @@ export default function LoadingAnimation() {
           scale: [1, 2, 2, 1, 1],
           rotate: [0, 0, 180, 180, 0],
           borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+          color: ['#c3e2d0', '#bcd2d0', '#adcfd8'],
         }}
         transition={{
           duration: 2,
