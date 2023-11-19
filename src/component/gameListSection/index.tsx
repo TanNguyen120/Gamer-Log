@@ -29,14 +29,15 @@ export default async function GameListSection() {
         </div>
       </div>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
-        {gameList.map((e: any, i: number) => (
-          <GameCard
-            key={i}
-            gameName={e.name}
-            myComment={e.mycomment}
-            gameDetails={undefined}
-          />
-        ))}
+        {gameList.length > 0 &&
+          gameList.map((e: any, i: number) => (
+            <GameCard
+              key={i}
+              gameName={e.name}
+              myComment={e.mycomment}
+              gameDetails={undefined}
+            />
+          ))}
       </div>
     </div>
   );
