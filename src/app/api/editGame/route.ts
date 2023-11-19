@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
   const gameData = await req.json();
-
+  console.log('request JSON: ' + JSON.stringify(gameData));
   try {
     if (
       !gameData.masterCode ||
@@ -25,6 +25,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ mess: 'success' }, { status: 200 });
   } catch (error) {
     console.error(JSON.stringify(error));
-    return NextResponse.json({ mess: error }, { status: 500 });
+    return NextResponse.json({ mess: JSON.stringify(error) }, { status: 500 });
   }
 }

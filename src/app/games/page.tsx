@@ -25,7 +25,7 @@ export default async function Games() {
   const gameList = await getData();
   return (
     <div className='bg-black min-h-screen'>
-      <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4'>
+      <div className='lg:mx-auto lg:w-2/3 mx-2  grid grid-cols-1 text-white justify-center gap-4'>
         <ReloadBtn />
         <GameListDetails listData={gameList} />
       </div>

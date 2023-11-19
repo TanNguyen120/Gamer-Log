@@ -17,8 +17,8 @@ export default function GameResultCard({
       <Link href={`/game/${slug}`}>
         <Image
           src={bgImg ? bgImg : '/deadLink.png'}
-          width={640}
-          height={480}
+          width={1280}
+          height={960}
           alt='game image'
           className=' rounded-t-lg'
         />

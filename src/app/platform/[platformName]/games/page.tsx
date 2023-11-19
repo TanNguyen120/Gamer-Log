@@ -32,7 +32,7 @@ export default async function Platforms({
       className=' bg-top bg-contain bg-no-repeat bg-neutral-900'
     >
       <div className='bg-black bg-opacity-80 min-h-screen'>
-        <div className='mx-auto w-2/3  grid grid-cols-1 text-white justify-center gap-4  divide-y divide-slate-600'>
+        <div className='lg:mx-auto lg:w-2/3 mx-2  grid grid-cols-1 text-white justify-center gap-4  divide-y divide-slate-600'>
           <div className='text-left flex flex-col'>
             <div className='text-5xl font-bold mt-96'>{platformData.name}</div>
             <div className='text-base text-slate-400'>

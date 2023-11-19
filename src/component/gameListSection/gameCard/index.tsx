@@ -8,10 +8,12 @@ const getData = async (gameName: string) => {
     //   'Content-Type': 'application/json',
     //   Authorization: process.env.API_KEY,
     // };
-    const resData = await axios.get(
-      `https://api.rawg.io/api/games/${gameName}?key=${process.env.API_KEY}`
+    const resData = await fetch(
+      `https://api.rawg.io/api/games/${gameName}?key=${process.env.API_KEY}`,
+      { cache: 'force-cache' }
     );
-    return resData.data;
+    const result = await resData.json();
+    return result;
   } catch (error) {
     console.error(JSON.stringify(error));
   }

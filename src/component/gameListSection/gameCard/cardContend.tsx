@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense, useEffect, useState } from 'react';
@@ -16,9 +15,13 @@ export default function CardContent({
       <Link href={`/game/${gameDetails.slug}`}>
         <Suspense fallback={<p>Loading Image...</p>}>
           <Image
-            src={gameDetails.background_image}
-            width={480}
-            height={270}
+            src={
+              gameDetails.background_image
+                ? gameDetails.background_image
+                : '/deadLink.png'
+            }
+            width={1820}
+            height={960}
             alt={gameDetails.name}
             className=' rounded-t-lg  h-[16rem]'
           />
@@ -58,7 +61,7 @@ export default function CardContent({
 
       <div className=' flex flex-row text-sm ml-2 pl-2 text-slate-400'>
         {gameDetails.genres.map((e: any, i: number) => (
-          <Link className=' m-1' key={i} href={`/genre/${e.name}`}>
+          <Link className=' m-1' key={i} href={`/genres/${e.slug}/games`}>
             {e.name}
           </Link>
         ))}
@@ -74,7 +77,9 @@ export default function CardContent({
         </div>
         <div className=' grid grid-cols-2 py-2'>
           <div>Release Date : </div>
-          <div className=' text-right'>{gameDetails.released}</div>
+          <div className=' text-right'>
+            {gameDetails ? gameDetails.released : 'no data'}
+          </div>
         </div>
         <div className=' grid grid-cols-2 py-3 text'>
           <div>Developers:</div>

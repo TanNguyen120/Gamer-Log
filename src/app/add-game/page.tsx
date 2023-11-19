@@ -40,7 +40,6 @@ export default async function Page({
               slug={gameData.slug}
               score={gameData.metacritic}
               genres={gameData.genres}
-              severUrl={process.env.SEVER_URL}
             />
           </div>
         </div>

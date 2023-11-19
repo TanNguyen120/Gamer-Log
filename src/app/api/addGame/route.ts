@@ -25,7 +25,6 @@ export async function GET(request: Request) {
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
   const gameData = await req.json();
-
   try {
     if (
       !gameData.masterCode ||
@@ -35,11 +34,15 @@ export async function POST(req: Request) {
     }
     await sql`INSERT INTO myGames (Name, myComment, score) VALUES (${gameData.slug}, ${gameData.comment}, ${gameData.score});`;
     for await (const e of gameData.genres) {
-      await sql`INSERT INTO genres (game, name) VALUES (${gameData.slug}, ${e.slug});`;
+      try {
+        await sql`INSERT INTO genres (game, name) VALUES (${gameData.slug}, ${e.slug});`;
+      } catch (error) {
+        console.log('already have the game genre');
+      }
     }
     return NextResponse.json({ mess: 'success' }, { status: 200 });
   } catch (error) {
     console.error(JSON.stringify(error));
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ error: JSON.stringify(error) }, { status: 500 });
   }
 }
