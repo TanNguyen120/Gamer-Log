@@ -10,15 +10,19 @@ import Link from 'next/link';
 
 async function getData(gameName: string) {
   try {
-    const resData = await axios.get(
-      `https://api.rawg.io/api/games/${gameName}?key=${process.env.API_KEY}`
+    const resData = await fetch(
+      `https://api.rawg.io/api/games/${gameName}?key=${process.env.API_KEY}`,
+      { cache: 'force-cache' }
     );
-    const screenShot = await axios.get(
-      `https://api.rawg.io/api/games/${gameName}/screenshots?key=${process.env.API_KEY}`
+    const screenShot = await fetch(
+      `https://api.rawg.io/api/games/${gameName}/screenshots?key=${process.env.API_KEY}`,
+      { cache: 'force-cache' }
     );
+    const resultData = await resData.json();
+    const resultScreenShot = await screenShot.json();
     const results = {
-      gameDetails: resData.data,
-      screenShot: screenShot.data.results,
+      gameDetails: resultData,
+      screenShot: resultScreenShot.results,
     };
 
     return results;
