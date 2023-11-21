@@ -10,16 +10,30 @@ const expandAnimate = {
     height: '0%',
     display: 'none',
   },
+  hiddenContent: {
+    opacity: 0,
+    transition: { delay: 0.8 },
+  },
+  showContent: (delayTime: number) => ({
+    height: 'fit-content',
+    opacity: 1,
+    transition: { delay: delayTime * 0.3 },
+  }),
   showExpand: {
     height: 'fit-content',
-    transition: { duration: 1.5 },
+    transition: { duration: 0.8 },
     display: 'flex',
+    type: 'spring',
+    bounce: 0.5,
   },
   pointUp: {
-    rotate: '90deg',
-    transition: { duration: 1.5 },
+    rotate: '0deg',
+    transition: { duration: 0.5 },
   },
-  pointDown: { rotate: '-90deg', transition: { duration: 1.5 } },
+  pointDown: {
+    rotate: '-180deg',
+    transition: { duration: 0.5 },
+  },
 };
 
 export default function ExpandGameCard({
@@ -32,15 +46,18 @@ export default function ExpandGameCard({
   const [isShow, setIsShow] = useState(false);
   const expandControls = useAnimationControls();
   const pointerControls = useAnimationControls();
+  const contendControls = useAnimationControls();
   useEffect(() => {
     if (isShow) {
       expandControls.start('showExpand');
+      contendControls.start('showContent');
       pointerControls.start('pointDown');
     } else {
+      pointerControls.start('pointUp');
       expandControls.start('hiddenExpand');
-      //   pointerControls.start('pointUp');
+      contendControls.start('hiddenContent');
     }
-  }, [isShow, expandControls, pointerControls]);
+  }, [isShow, expandControls, pointerControls, contendControls]);
   return (
     <div
       className='flex flex-col'
@@ -50,18 +67,12 @@ export default function ExpandGameCard({
       <Link
         href={`/game/${gameDetails.slug}`}
         className=' text-slate-200 text-2xl font-semibold ml-2 pt-2 px-2'
-        onMouseEnter={(e) => setIsShow(true)}
-        onMouseLeave={(e) => setIsShow(false)}
       >
         {gameDetails.name}
       </Link>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
 
-      <div
-        className=' flex flex-row text-sm ml-2 pl-2 text-slate-400'
-        onMouseEnter={(e) => setIsShow(true)}
-        onMouseLeave={(e) => setIsShow(false)}
-      >
+      <div className=' flex flex-row text-sm ml-2 pl-2 text-slate-400'>
         {gameDetails.genres.map((e: any, i: number) => (
           <Link className=' m-1' key={i} href={`/genres/${e.slug}/games`}>
             {e.name}
@@ -71,7 +82,7 @@ export default function ExpandGameCard({
       <motion.div
         variants={expandAnimate}
         animate={pointerControls}
-        className=' mr-2 ml-auto -rotate-90'
+        className=' mr-2 ml-auto'
       >
         <IoIosArrowUp />
       </motion.div>
@@ -79,38 +90,66 @@ export default function ExpandGameCard({
       <motion.div
         variants={expandAnimate}
         animate={expandControls}
-        transition={{ duration: 1.5 }}
         className=' flex-col py-2 px-5 divide-y text-slate-400 text-sm gap-4 divide-y-1'
       >
-        <div className=' grid grid-cols-2'>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={1}
+          className={` grid  ${
+            myRating.length >= 150
+              ? ' grid-cols-2 text-right'
+              : ' grid-cols-1 text-left'
+          }`}
+        >
           <div>My Comment : </div>
-          <div className=' text-right capitalize p-3 rounded-lg m-1 bg-slate-300 text-slate-700'>
+          <div className='  capitalize p-3 rounded-lg m-1 bg-slate-300 text-slate-700'>
             {myRating}
           </div>
-        </div>
-        <div className=' grid grid-cols-2 py-2'>
+        </motion.div>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={2}
+          className=' grid grid-cols-2 py-2'
+        >
           <div>Release Date : </div>
           <div className=' text-right'>
             {gameDetails ? gameDetails.released : 'no data'}
           </div>
-        </div>
-        <div className=' grid grid-cols-2 py-3 text'>
+        </motion.div>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={3}
+          className=' grid grid-cols-2 py-3 text'
+        >
           <div>Developers:</div>
           <div className='  flex flex-col text-sm text-right'>
             {gameDetails.developers.map((e: any, i: number) => (
               <div key={i}>{e.name}</div>
             ))}
           </div>
-        </div>
-        <div className=' grid grid-cols-2 py-3'>
+        </motion.div>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={4}
+          className=' grid grid-cols-2 py-3'
+        >
           <div>Store:</div>
           <div className=' text-right flex flex-col text-sm'>
             {gameDetails.stores.map((e: any, i: number) => (
               <div key={i}>{e.store.name}</div>
             ))}
           </div>
-        </div>
-        <div className=' grid grid-cols-2 py-2'>
+        </motion.div>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={5}
+          className=' grid grid-cols-2 py-2 '
+        >
           <div
             className='hover:cursor-pointer'
             title='ESRB ratings provide information about what`s in a game or app so parents and consumers can make informed choices about which games are right for their family. Ratings have 3 parts: Rating Categories, Content Descriptors, and Interactive Elements.'
@@ -122,15 +161,20 @@ export default function ExpandGameCard({
               ? gameDetails.esrb_rating.name
               : 'no rating'}
           </div>
-        </div>
-        <div className=' grid grid-cols-1 pt-2'>
+        </motion.div>
+        <motion.div
+          variants={expandAnimate}
+          animate={contendControls}
+          custom={6}
+          className=' grid grid-cols-1 pt-2'
+        >
           <Link
             href={`/edit-game/${gameDetails.slug}`}
             className='py-1 px-2 rounded-lg bg-pink-500 text-white font-semibold w-fit mt-2'
           >
             Edit
           </Link>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );
