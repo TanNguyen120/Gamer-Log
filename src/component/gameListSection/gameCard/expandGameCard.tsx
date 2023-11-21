@@ -97,12 +97,12 @@ export default function ExpandGameCard({
           animate={contendControls}
           custom={1}
           className={` grid  ${
-            myRating.length >= 150
+            myRating.length < 150
               ? ' grid-cols-2 text-right'
               : ' grid-cols-1 text-left'
           }`}
         >
-          <div>My Comment : </div>
+          <div className='text-left'>My Comment : </div>
           <div className='  capitalize p-3 rounded-lg m-1 bg-slate-300 text-slate-700'>
             {myRating}
           </div>
