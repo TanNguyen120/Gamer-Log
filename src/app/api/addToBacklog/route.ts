@@ -20,15 +20,18 @@ export async function GET(request: Request) {
 
 export async function POST(req: Request) {
   // Extract the `messages` from the body of the request
+
   const gameData = await req.json();
   try {
     if (
       !gameData.masterCode ||
       gameData.masterCode != process.env.MASTER_CODE
     ) {
+      console.error('not the master');
       throw new Error('you are not the master');
     }
-    await sql`INSERT INTO backlog (Name, goal) VALUES (${gameData.slug}, ${gameData.goal});`;
+    console.log('backlog:' + gameData);
+    await sql`INSERT INTO backlog (game, goal) VALUES (${gameData.slug}, ${gameData.goal});`;
     return NextResponse.json({ mess: 'success' }, { status: 200 });
   } catch (error) {
     console.error(JSON.stringify(error));
