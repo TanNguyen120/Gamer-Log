@@ -10,28 +10,32 @@ const expandAnimate = {
     height: '0%',
     type: 'srping',
     bounce: 0.5,
-    transition: { duration: 0.8 },
+    transition: { duration: 0.8, delay: 0.4 },
   },
   hiddenExpand: {
     display: 'none',
-    transition: { delay: 0.9 },
+    transition: {},
   },
   hiddenContent: (delayTime: number) => ({
-    height: '0%',
+    x: 30,
     opacity: 0,
-    transition: { delay: delayTime * 0.1 },
+    display: 'none',
+    transition: { duration: 0.2, delay: delayTime * 0.2 },
   }),
   showContent: (delayTime: number) => ({
-    height: 'fit-content',
+    x: 0,
     opacity: 1,
-    transition: { delay: delayTime * 0.3 },
+    display: '',
+    transition: { duration: 0.2, delay: delayTime * 0.2 },
   }),
   showExpand: {
-    height: 'fit-content',
-    transition: { duration: 0.8 },
+    height: 600,
+    transition: { duration: 0.5 },
     display: 'flex',
-    type: 'spring',
-    bounce: 0.5,
+  },
+  fitExpand: {
+    height: 'fit-content',
+    transition: { duration: 0.5 },
   },
   pointUp: {
     rotate: '0deg',
@@ -55,14 +59,21 @@ export default function ExpandGameCard({
   const pointerControls = useAnimationControls();
   const contendControls = useAnimationControls();
   useEffect(() => {
+    const hideCard = async () => {
+      await expandControls.start('minimizeExpand');
+      expandControls.start('hiddenExpand');
+    };
+    const expandCard = async () => {
+      await expandControls.start('showExpand');
+      await contendControls.start('showContent');
+      expandControls.start('fitExpand');
+    };
     if (isShow) {
-      expandControls.start('showExpand');
-      contendControls.start('showContent');
+      expandCard();
       pointerControls.start('pointDown');
     } else {
       pointerControls.start('pointUp');
-      expandControls.start('minimizeExpand');
-      expandControls.start('hiddenExpand');
+      hideCard();
       contendControls.start('hiddenContent');
     }
   }, [isShow, expandControls, pointerControls, contendControls]);
@@ -103,7 +114,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={1}
+          custom={0}
           className={` grid  ${
             myRating.length < 150
               ? ' grid-cols-2 text-right'
@@ -118,7 +129,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={2}
+          custom={1}
           className=' grid grid-cols-2 py-2'
         >
           <div>Release Date : </div>
@@ -129,7 +140,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={3}
+          custom={2}
           className=' grid grid-cols-2 py-3 text'
         >
           <div>Developers:</div>
@@ -142,7 +153,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={4}
+          custom={3}
           className=' grid grid-cols-2 py-3'
         >
           <div>Store:</div>
@@ -155,7 +166,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={5}
+          custom={4}
           className=' grid grid-cols-2 py-2 '
         >
           <div
@@ -173,7 +184,7 @@ export default function ExpandGameCard({
         <motion.div
           variants={expandAnimate}
           animate={contendControls}
-          custom={6}
+          custom={5}
           className=' grid grid-cols-1 pt-2'
         >
           <Link
