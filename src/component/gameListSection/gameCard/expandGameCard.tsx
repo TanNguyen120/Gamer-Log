@@ -101,7 +101,7 @@ export default function ExpandGameCard({
       <motion.div
         variants={expandAnimate}
         animate={pointerControls}
-        className=' mr-2 ml-auto'
+        className=' mr-5 ml-auto my-2'
       >
         <IoIosArrowUp />
       </motion.div>
