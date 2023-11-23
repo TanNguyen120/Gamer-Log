@@ -6,14 +6,21 @@ import { useEffect, useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 
 const expandAnimate = {
-  hiddenExpand: {
+  minimizeExpand: {
     height: '0%',
+    type: 'srping',
+    bounce: 0.5,
+    transition: { duration: 0.8 },
+  },
+  hiddenExpand: {
     display: 'none',
+    transition: { delay: 0.9 },
   },
-  hiddenContent: {
+  hiddenContent: (delayTime: number) => ({
+    height: '0%',
     opacity: 0,
-    transition: { delay: 0.8 },
-  },
+    transition: { delay: delayTime * 0.1 },
+  }),
   showContent: (delayTime: number) => ({
     height: 'fit-content',
     opacity: 1,
@@ -54,6 +61,7 @@ export default function ExpandGameCard({
       pointerControls.start('pointDown');
     } else {
       pointerControls.start('pointUp');
+      expandControls.start('minimizeExpand');
       expandControls.start('hiddenExpand');
       contendControls.start('hiddenContent');
     }
