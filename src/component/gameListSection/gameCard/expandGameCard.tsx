@@ -30,7 +30,7 @@ const expandAnimate = {
   }),
   showExpand: {
     height: 600,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.85 },
     display: 'flex',
   },
   fitExpand: {
