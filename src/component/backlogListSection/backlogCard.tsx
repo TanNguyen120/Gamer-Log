@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BackLogCardContent from './backLogContent';
 
 const getData = async (gameName: string) => {
   try {
@@ -25,5 +26,9 @@ export default async function BacklogCard({
   goal: string;
 }) {
   const apiData = await getData(name);
-  return <></>;
+  return (
+    <>
+      <BackLogCardContent gameDetails={apiData} goal={goal} />
+    </>
+  );
 }

@@ -11,7 +11,7 @@ const shuffle = (array: Array<any>) => {
 };
 
 async function getGamesList() {
-  const games = await sql`SELECT * FROM myGames;`;
+  const games = await sql`SELECT * FROM backlog;`;
   return shuffle(games.rows);
 }
 
