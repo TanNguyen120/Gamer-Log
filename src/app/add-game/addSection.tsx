@@ -1,32 +1,67 @@
 'use client';
 import axios from 'axios';
+import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
+import { type } from 'os';
 import { useEffect, useState } from 'react';
 import { AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
 
+// support call api handle
 async function addGameData(
   slug: string,
   score: any,
   comment: string,
+  goal: string,
   genres: Array<any>,
   setMes: Function,
-  masterCode: string
+  masterCode: string,
+  addGameFlag: boolean
 ) {
   try {
-    const gameBody = {
-      slug: slug,
-      score: score,
-      comment: comment,
-      genres: genres,
-      masterCode: masterCode,
-    };
-    const currentUrl = new URL(window.location.href);
-    const url = currentUrl.origin;
-    const res = await axios.post(`${url}/api/addGame`, gameBody);
-    setMes(res.data.mess);
+    // the flag will determine what api to call
+    if (addGameFlag) {
+      const gameBody = {
+        slug: slug,
+        score: score,
+        comment: comment,
+        genres: genres,
+        masterCode: masterCode,
+      };
+      // get the origin url to call for serverless api
+      const currentUrl = new URL(window.location.href);
+      const url = currentUrl.origin;
+      const res = await axios.post(`${url}/api/addGame`, gameBody);
+      setMes(res.data.mess);
+    } else {
+      const gameBody = {
+        slug: slug,
+        goal: goal,
+        masterCode: masterCode,
+      };
+      // get the origin url to call for serverless api
+      const currentUrl = new URL(window.location.href);
+      const url = currentUrl.origin;
+      const res = await axios.post(`${url}/api/addToBacklog`, gameBody);
+      setMes(res.data.mess);
+    }
   } catch (error: any) {
     setMes('error: ' + error.message);
   }
 }
+
+// animation variation
+const labelAnimate = {
+  inactive: { scale: 0.5, color: '#475569' },
+  active: {
+    scale: 1,
+    color: '#cbd5e1',
+    transition: { duration: 1, type: 'spring', bounce: 0.8 },
+  },
+  changing: {
+    scale: [0, 1],
+    x: [50, 0],
+    transition: { duration: 0.8 },
+  },
+};
 
 export default function AddSection({
   slug,
@@ -41,6 +76,9 @@ export default function AddSection({
   const [resultMes, setResultMes] = useState('');
   const [messCss, setMessCss] = useState(' hidden');
   const [masterCode, setMasterCode] = useState('');
+  const [goal, setGoal] = useState('');
+  const [addPlayed, setAddPlayed] = useState(true);
+  const labelControl = useAnimationControls();
   useEffect(() => {
     resultMes !== ''
       ? resultMes.includes('success')
@@ -48,8 +86,38 @@ export default function AddSection({
         : setMessCss(' text-red-600')
       : setMessCss(' hidden');
   }, [resultMes]);
+
+  useEffect(() => {
+    labelControl.start('changing');
+  }, [addPlayed, labelControl]);
   return (
     <div className='flex flex-col pt-5'>
+      <div className='flex flex-row gap-3 my-2'>
+        <motion.div
+          variants={labelAnimate}
+          animate={addPlayed ? 'active' : 'inactive'}
+        >
+          Add to Game Played
+        </motion.div>
+        <motion.div
+          className={`h-7 w-12 p-1 rounded-lg bg-slate-400 hover:cursor-pointer flex flex-row  ${
+            addPlayed ? ' justify-start' : ' justify-end'
+          }`}
+          onClick={(e) => setAddPlayed((prev) => !prev)}
+        >
+          <motion.div
+            layout
+            transition={{ type: 'spring', duration: 1, bounce: 0.7 }}
+            className='h-5 w-5 rounded-full bg-slate-200'
+          ></motion.div>
+        </motion.div>
+        <motion.div
+          variants={labelAnimate}
+          animate={!addPlayed ? 'active' : 'inactive'}
+        >
+          Add to Backlog
+        </motion.div>
+      </div>
       <div className={' font-semibold p-2 flex flex-row' + messCss}>
         <div>
           {resultMes.includes('success') ? (
@@ -60,12 +128,37 @@ export default function AddSection({
         </div>
         {resultMes}{' '}
       </div>
-      <div>Enter Comment:</div>
-      <textarea
-        onChange={(e) => setCommentText(e.target.value)}
-        className=' bg-neutral-800 border border-slate-400 text-slate-400 p-3'
-        spellCheck='true'
-      ></textarea>
+      <motion.div
+        variants={labelAnimate}
+        animate={labelControl}
+        className='mb-2'
+      >
+        {addPlayed ? 'Enter Comment:' : 'Enter Goal:'}
+      </motion.div>
+      <AnimatePresence>
+        {addPlayed ? (
+          <motion.textarea
+            initial={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{ duration: 1 }}
+            onChange={(e) => setCommentText(e.target.value)}
+            className=' bg-neutral-800 border border-slate-400 text-slate-400 p-3'
+            spellCheck='true'
+            placeholder='add comment for this'
+          ></motion.textarea>
+        ) : (
+          <motion.textarea
+            initial={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{ duration: 1 }}
+            onChange={(e) => setGoal(e.target.value)}
+            className=' bg-neutral-800 border border-slate-400 text-slate-400 p-3'
+            spellCheck='true'
+            placeholder=' add goal for this game'
+          ></motion.textarea>
+        )}
+      </AnimatePresence>
+
       <div className=' py-4'>
         <label className='block text-gray-300 text-base font-bold mb-2'>
           Master Code
@@ -88,9 +181,11 @@ export default function AddSection({
             slug,
             score,
             commentText,
+            goal,
             genres,
             setResultMes,
-            masterCode
+            masterCode,
+            addPlayed
           )
         }
       >
