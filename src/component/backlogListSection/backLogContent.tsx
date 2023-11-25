@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense, useEffect, useRef, useState } from 'react';
+import IconPlatform from '../gameListSection/gameCard/platformIcon';
 
 const backlogAnimate = {
   hideTile: {
@@ -54,12 +55,27 @@ export default function BackLogCardContent({
           />
         </Suspense>
       </Link>
+      <div className=' flex flex-row flex-wrap text-sm gap-2 items-center p-2 text-slate-300 pl-3'>
+        {gameDetails.platforms.length > 0
+          ? gameDetails.platforms.map((e: any, i: number) => (
+              <div className='' key={i}>
+                <IconPlatform platformName={e.platform.name} />
+              </div>
+            ))
+          : 'No Data'}
+      </div>
+      <Link
+        href={`/game/${gameDetails.slug}`}
+        className=' text-slate-200 text-2xl font-semibold ml-2 pt-2 px-2'
+      >
+        {gameDetails.name}
+      </Link>
       {/* -------------------------------------------------------------------------------------------------------------------------- */}
       <div className=' flex flex-row align-middle py-5 pl-3'>
         <motion.div
           variants={backlogAnimate}
           animate={isView ? 'showTile' : 'hideTile'}
-          className='ml:2 mr:auto my-auto '
+          className='ml-1 my-auto '
         >
           Goal:
         </motion.div>
