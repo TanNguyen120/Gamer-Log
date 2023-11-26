@@ -9,14 +9,13 @@ async function findGame(gameName: string) {
     return result.rows[0];
   } catch (error) {
     console.error(JSON.stringify(error));
-    return error;
   }
 }
 
-async function getRawData(slug: any) {
+async function getRawData(gameData: any) {
   try {
     const resData = await axios.get(
-      `https://api.rawg.io/api/games/${slug}?key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/games/${gameData.game}?key=${process.env.API_KEY}`
     );
 
     return resData.data;
@@ -31,7 +30,8 @@ export default async function Page({
   params: { gameName: string };
 }) {
   const gameData = await findGame(params.gameName);
-  const gameDetails = await getRawData(gameData.game);
+
+  const gameDetails = await getRawData(gameData);
   return (
     <div
       style={{
@@ -46,7 +46,7 @@ export default async function Page({
           </div>
           {/* We have to pass genres and score for the case user is completed the goal and add game to backlog */}
           <EditSection
-            goal={gameData.goal}
+            goal={gameData ? gameData.goal : 'no goal'}
             slug={gameDetails.slug}
             genres={gameDetails.genres}
             score={gameDetails.score}
