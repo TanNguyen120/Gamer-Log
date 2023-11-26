@@ -1,19 +1,19 @@
 import axios from 'axios';
-import EditSection from './editSection';
+import EditSection from './editContent';
+import { sql } from '@vercel/postgres';
 
 async function findGame(gameName: string) {
   try {
-    const result = await axios.get(
-      `${window.location.origin}/api/findGame?gameName=${gameName}`
-    );
-    return result.data;
+    const result =
+      await sql`SELECT * FROM backlog WHERE backlog.game=${gameName};`;
+    return result.rows[0];
   } catch (error) {
     console.error(JSON.stringify(error));
     return error;
   }
 }
 
-async function getRawgData(slug: string) {
+async function getRawData(slug: any) {
   try {
     const resData = await axios.get(
       `https://api.rawg.io/api/games/${slug}?key=${process.env.API_KEY}`
@@ -31,7 +31,7 @@ export default async function Page({
   params: { gameName: string };
 }) {
   const gameData = await findGame(params.gameName);
-  const gameDetails = await getRawgData(gameData.game.name);
+  const gameDetails = await getRawData(gameData.game);
   return (
     <div
       style={{
@@ -44,12 +44,12 @@ export default async function Page({
           <div className='text-left flex flex-col'>
             <div className='text-5xl font-bold mt-96'>{gameDetails.name}</div>
           </div>
+          {/* We have to pass genres and score for the case user is completed the goal and add game to backlog */}
           <EditSection
+            goal={gameData.goal}
             slug={gameDetails.slug}
-            score={gameDetails.metacritic}
             genres={gameDetails.genres}
-            myComment={gameData.game.mycomment}
-            severUrl={process.env.SEVER_URL}
+            score={gameDetails.score}
           />
         </div>
       </div>
