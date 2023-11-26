@@ -18,7 +18,7 @@ async function getGamesList() {
 export default async function BackLogSection() {
   const gameList = await getGamesList();
   return (
-    <div className=' flex flex-col'>
+    <div className=' flex flex-col border-t border-slate-200 pt-2'>
       <div className=' flex flex-row text-slate-300 mt-2'>
         <div className=' mx-2 mb-2'>Game in Backlog:</div>
         <div>

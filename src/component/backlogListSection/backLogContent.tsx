@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import IconPlatform from '../gameListSection/gameCard/platformIcon';
+import { LiaCogSolid } from 'react-icons/lia';
 
 const backlogAnimate = {
   hideTile: {
@@ -87,6 +88,17 @@ export default function BackLogCardContent({
           {goal}
         </motion.div>
       </div>
+      <motion.div
+        className='mr-3 ml-auto mb-5 hover:cursor-pointer'
+        whileHover={{
+          rotate: 180,
+          transition: { repeat: Infinity, repeatDelay: 0, duration: 1 },
+        }}
+      >
+        <Link href={`/edit-backlog/${gameDetails.slug}`}>
+          <LiaCogSolid />
+        </Link>
+      </motion.div>
     </div>
   );
 }
