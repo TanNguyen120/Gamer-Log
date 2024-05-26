@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
+import { useRouter } from 'next/navigation';
 
 // call to add game api
 async function addToPlayed(
@@ -26,9 +27,35 @@ async function addToPlayed(
     const url = currentUrl.origin;
     const res = await axios.post(`${url}/api/addGame`, gameBody);
     setMes(res.data.mess);
+    // Delete the game from backlog list because it is in finished list
+    await axios.post(`${url}/api/removeFromBacklog`, gameBody);
   } catch (error: any) {
     console.error('error:' + JSON.stringify(error));
     setMes('error: ' + JSON.stringify(error));
+  }
+}
+
+// Delete Game from Backlog function because I cant complete or abandon it
+async function removeFromBackLog(
+  slug: string,
+  masterCode: string,
+  router: any
+) {
+  const body = {
+    slug: slug,
+    masterCode: masterCode,
+  };
+  try {
+    const currentUrl = new URL(window.location.href);
+    const url = currentUrl.origin;
+
+    await axios.post(`${url}/api/removeFromBacklog`, body);
+    // IF the request success redirect to home
+    alert('Operation is success and we will go back to home page');
+    router.push('/');
+  } catch (error) {
+    console.error('error:' + JSON.stringify(error));
+    alert('Request Fails');
   }
 }
 
@@ -90,6 +117,8 @@ export default function EditSection({
   const [editGoal, setEditGoal] = useState(goal);
   const [addPlayed, setAddPlayed] = useState(true);
   const labelControl = useAnimationControls();
+  const router = useRouter();
+
   useEffect(() => {
     resultMes !== ''
       ? resultMes.includes('success')
@@ -179,6 +208,12 @@ export default function EditSection({
         <p className='text-slate-500 text-xs italic'>
           Enter master code to prove that you are the master.
         </p>
+      </div>
+      <div
+        className='mt-4 rounded-lg bg-pink-500 text-white  font-semibold  hover:cursor-pointer hover:bg-pink-600 hover:scale-105 w-fit p-2'
+        onClick={(e) => removeFromBackLog(slug, masterCode, router)}
+      >
+        Delete From Back-Log
       </div>
       <div
         className='mt-4 rounded-lg p-2 bg-pink-700 font-semibold text-white w-fit hover:cursor-pointer'

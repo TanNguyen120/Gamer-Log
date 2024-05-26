@@ -8,7 +8,9 @@ export async function POST(req: Request) {
     if (!reqData.masterCode || reqData.masterCode != process.env.MASTER_CODE) {
       throw new Error('you are not the master');
     }
-    await sql`DELETE FROM backlog WHERE WHERE game=${reqData.slug};`;
+
+    await sql`DELETE FROM backlog WHERE backlog.game = ${reqData.slug};`;
+
     return NextResponse.json({ mess: 'success' }, { status: 200 });
   } catch (error) {
     console.error(JSON.stringify(error));
