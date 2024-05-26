@@ -29,6 +29,8 @@ async function addToPlayed(
     setMes(res.data.mess);
     // Delete the game from backlog list because it is in finished list
     await axios.post(`${url}/api/removeFromBacklog`, gameBody);
+    // if success alert the user
+    alert('success');
   } catch (error: any) {
     console.error('error:' + JSON.stringify(error));
     setMes('error: ' + JSON.stringify(error));
