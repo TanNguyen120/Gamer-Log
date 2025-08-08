@@ -2,58 +2,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
-
-async function editGameData(
-  slug: string,
-  score: any,
-  comment: string,
-  genres: Array<any>,
-  setMes: Function,
-  masterCode: string
-) {
-  try {
-    const gameBody = {
-      slug: slug,
-      score: score,
-      comment: comment,
-      genres: genres,
-      masterCode: masterCode,
-    };
-
-    console.log('edit game: ' + gameBody.slug);
-    const currentUrl = new URL(window.location.href);
-    const url = currentUrl.origin;
-    await axios
-      .post(url + '/api/editGame', gameBody, {})
-      .then(function (response) {
-        console.log(response);
-        setMes(response.data.mess);
-      })
-      .catch((err) => {
-        console.log(err);
-        setMes(JSON.stringify(err));
-      });
-    // fetch(`${severUrl}api/editGame`, {
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   method: 'POST',
-    //   body: JSON.stringify(gameBody),
-    // })
-    //   .then(function (res) {
-    //     console.log(res);
-    //     setMes(JSON.stringify(res));
-    //   })
-    //   .catch(function (res) {
-    //     console.log(res);
-    //     setMes(JSON.stringify(res));
-    //   });
-  } catch (error: any) {
-    console.error('error:' + JSON.stringify(error));
-    setMes('error: ' + JSON.stringify(error));
-  }
-}
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function EditSection({
   myComment,
@@ -72,6 +21,68 @@ export default function EditSection({
   const [resultMes, setResultMes] = useState('');
   const [messCss, setMessCss] = useState(' hidden');
   const [masterCode, setMasterCode] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function editGameData(
+    slug: string,
+    score: any,
+    comment: string,
+    genres: Array<any>,
+    setMes: Function,
+    masterCode: string
+  ) {
+    try {
+      const gameBody = {
+        slug: slug,
+        score: score,
+        comment: comment,
+        genres: genres,
+        masterCode: masterCode,
+      };
+      setIsLoading(true);
+      toast.loading('Processing... Please wait...');
+      console.log('edit game: ' + gameBody.slug);
+      const currentUrl = new URL(window.location.href);
+      const url = currentUrl.origin;
+      await axios
+        .post(url + '/api/editGame', gameBody, {})
+        .then(function (response) {
+          toast.dismiss();
+          console.log(response);
+          setMes(response.data.mess);
+          toast.success(response.data.mess);
+        })
+        .catch((err) => {
+          console.log(err);
+          setMes(JSON.stringify(err));
+          setIsError(true);
+          toast.error(JSON.stringify(err));
+        });
+      // fetch(`${severUrl}api/editGame`, {
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   method: 'POST',
+      //   body: JSON.stringify(gameBody),
+      // })
+      //   .then(function (res) {
+      //     console.log(res);
+      //     setMes(JSON.stringify(res));
+      //   })
+      //   .catch(function (res) {
+      //     console.log(res);
+      //     setMes(JSON.stringify(res));
+      //   });
+    } catch (error: any) {
+      console.error('error:' + JSON.stringify(error));
+      setMes('error: ' + JSON.stringify(error));
+      toast.error('error: ' + JSON.stringify(error));
+    }
+  }
+
   useEffect(() => {
     resultMes !== ''
       ? resultMes.includes('success')
@@ -81,17 +92,10 @@ export default function EditSection({
   }, [resultMes]);
   return (
     <div className='flex flex-col pt-5'>
-      <div className={' font-semibold p-2 flex flex-row' + messCss}>
-        <div>
-          {resultMes.includes('success') ? (
-            <AiOutlineCheckCircle className=' inline mr-1' />
-          ) : (
-            <AiOutlineWarning className=' inline mr-1' />
-          )}
-        </div>
-        {resultMes}{' '}
+      <ToastContainer />
+      <div className='flex flex-row'>
+        <div>Edit Comment:</div>
       </div>
-      <div>Edit Comment:</div>
       <textarea
         onChange={(e) => setCommentText(e.target.value)}
         className=' bg-neutral-800 border border-slate-400 text-slate-400 p-3'
